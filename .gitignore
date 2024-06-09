@@ -1,9 +1,9 @@
 #IDEA files
-.idea/
+.idea
 *.iml
 
 # Compiled class file
-out/
+out
 *.class
 
 # Log file
