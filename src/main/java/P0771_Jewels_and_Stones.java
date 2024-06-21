@@ -28,24 +28,23 @@ Output: 0
         System.out.println(res);
     }
 
+    static class Solution {
+        public int numJewelsInStones(String jewels, String stones) {
 
-}
-
-class Solution {
-    public int numJewelsInStones(String jewels, String stones) {
-
-        Set<Character> jewelsSet = new HashSet<>();
-        for (Character ch : jewels.toCharArray()) {
-            jewelsSet.add(ch);
-        }
-
-        var res = 0;
-        for (Character ch : stones.toCharArray()) {
-            if (jewelsSet.contains(ch)) {
-                res++;
+            Set<Character> jewelsSet = new HashSet<>();
+            for (Character ch : jewels.toCharArray()) {
+                jewelsSet.add(ch);
             }
-        }
 
-        return res;
+            var res = 0;
+            for (Character ch : stones.toCharArray()) {
+                if (jewelsSet.contains(ch)) {
+                    res++;
+                }
+            }
+
+            return res;
+        }
     }
 }
+
