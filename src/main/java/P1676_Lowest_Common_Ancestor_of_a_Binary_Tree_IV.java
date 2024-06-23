@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class P1676_Lowest_Common_Ancestor_of_a_Binary_Tree_IV {
     /*
     1676. Lowest Common Ancestor of a Binary Tree IV https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/description
@@ -38,18 +41,49 @@ Explanation: The lowest common ancestor of the nodes 7, 6, 2, and 4 is node 5.
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {
 
-        return new TreeNode(2);
+        Set<TreeNode> nodeSet = new HashSet<>();
+        for (TreeNode node : nodes) {
+            nodeSet.add(node);
+        }
+
+        return findLCA(root, nodeSet);
     }
 
+    private TreeNode findLCA(TreeNode current, Set<TreeNode> nodes) {
+        if (current == null) {
+            return null;
+        }
 
-}
+        if (nodes.contains(current)) {
+            return current;
+        }
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+        TreeNode left = findLCA(current.left, nodes);
+        TreeNode right = findLCA(current.right, nodes);
 
-    TreeNode(int x) {
-        val = x;
+        if (left != null && right != null) {
+            return current;
+        }
+
+        return left != null ? left : right;
+    }
+
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+
+        @Override
+        public String toString() {
+            return "TreeNode{" +
+                    "val=" + val +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
+        }
     }
 }
