@@ -38,67 +38,68 @@ Explanation: At each second we have the following:
 - At t = 2: Person 1 is the only one who wants to enter, so they just enter through the door.
      */
     public static void main(String[] args) {
-//        int[] arrival1 = {0, 1, 1, 2, 4}, state1 = {0, 1, 0, 0, 1};
-//        int[] res1 = new P2534_Time_Taken_to_Cross_the_Door().timeTaken(arrival1, state1);
-//        System.out.println(Arrays.toString(res1));
+        int[] arrival1 = {0, 1, 1, 2, 4}, state1 = {0, 1, 0, 0, 1};
+        int[] res1 = new P2534_Time_Taken_to_Cross_the_Door().timeTaken(arrival1, state1);
+        System.out.println(Arrays.toString(res1));
 
         int[] arrival2 = {0, 0, 0}, state2 = {1, 0, 1};
         int[] res2 = new P2534_Time_Taken_to_Cross_the_Door().timeTaken(arrival2, state2);
         System.out.println(Arrays.toString(res2));
+
+        int[] arrival3 = {3, 3, 4, 5, 5, 5}, state3 = {1, 0, 1, 0, 1, 0};
+        int[] res3 = new P2534_Time_Taken_to_Cross_the_Door().timeTaken(arrival3, state3);
+        System.out.println(Arrays.toString(res3));
+
+        int[] arrival4 = {0, 0, 1, 2, 8, 10, 10, 10, 10, 10}, state4 = {0, 1, 0, 1, 1, 0, 0, 0, 1, 1};
+        int[] res4 = new P2534_Time_Taken_to_Cross_the_Door().timeTaken(arrival4, state4);
+        System.out.println(Arrays.toString(res4));
+
+        int[] arrival5 = {73, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75},
+                state5 = {0,  1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0};
+        int[] res5 = new P2534_Time_Taken_to_Cross_the_Door().timeTaken(arrival5, state5);
+        System.out.println(Arrays.toString(res5));
     }
 
     public int[] timeTaken(int[] arrival, int[] state) {
+        int n = arrival.length;
+        int[] answer = new int[n];
+        int lastUsed = -1;
+        int lastState = -1;
 
-        int[] answer = new int[arrival.length];
+        Queue<Integer> entering = new LinkedList<>();
+        Queue<Integer> exiting = new LinkedList<>();
 
-        var time = 0;
-        var offset = 0;
-        var doorState = state[0];
+        int time = 0;
+        int index = 0;
+        while (index < n || !entering.isEmpty() || !exiting.isEmpty()) {
 
-        Queue<Integer> waitList = new LinkedList<>();
-        var index = 0;
-        while (index < arrival.length | !waitList.isEmpty()) {
-
-            var personIndex = arrival[index <= arrival.length ? index : waitList.peek()];
-            var personState = state[index <= arrival.length ? index : waitList.peek()];
-
-            if (doorState != personState & !waitList.isEmpty()) {
-                if (doorState == 0) {
-                    doorState = 1;
+            while (index < n && arrival[index] <= time) {
+                if (state[index] == 0) {
+                    entering.add(index);
                 } else {
-                    doorState = 0;
+                    exiting.add(index);
                 }
-
-                answer[waitList.remove()] = time;
-                time++;
-            } else if (doorState == personState) {
-                answer[index] = time;
-                index++;
-                time++;
-            } else {
-                waitList.add(index);
                 index++;
             }
-        }
 
+            if (time - lastUsed == 2){
+                lastState = -1;
+            }
+
+            if (!exiting.isEmpty() && (entering.isEmpty() || lastState != 0)) {
+                int person = exiting.poll();
+                answer[person] = time;
+                lastState = 1;
+                lastUsed = time;
+            } else if (!entering.isEmpty()) {
+                int person = entering.poll();
+                answer[person] = time;
+                lastState = 0;
+                lastUsed = time;
+            }
+
+            time++;
+        }
         return answer;
     }
 }
-
-//            for (int i = 0; i < waitList.size(); i++) {
-//                var personIndex = arrival[i];
-//                var personState = state[i];
-//
-//                if (doorState == 0) {
-//                    doorState = 1;
-//                } else {
-//                    doorState = 0;
-//                }
-//                time++;
-//
-//                if (doorState == state[waitList.peek()]) {
-//                    answer[waitList.remove()] = time;
-//                    offset++;
-//                    time++;
-//                }
-//            }
