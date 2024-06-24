@@ -31,4 +31,45 @@ Explanation: There are no 3-big indices in nums.
 
         return 0;
     }
+
+
+    int kBigIndicesBruteForce(int[] nums, int k) {
+
+        var length = nums.length;
+        var result = 0;
+
+        if (k >= length) {
+            return result;
+        }
+
+        for (int i = k; i < length; i++) {
+
+            var countLessBefore = 0;
+            var countLessAfter = 0;
+
+            for (var j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    countLessBefore++;
+                }
+                if (countLessBefore >= k){
+                    break;
+                }
+            }
+
+            for (var j = i + 1; j < length; j++) {
+                if (nums[j] < nums[i]) {
+                    countLessAfter++;
+                }
+                if (countLessAfter >= k){
+                    break;
+                }
+            }
+
+            if (countLessBefore >= k && countLessAfter >= k) {
+                result++;
+            }
+        }
+
+        return result;
+    }
 }
