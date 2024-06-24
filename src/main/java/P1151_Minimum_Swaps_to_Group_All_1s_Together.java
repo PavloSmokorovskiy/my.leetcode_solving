@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class P1151_Minimum_Swaps_to_Group_All_1s_Together {
     /*
     1151. Minimum Swaps to Group All 1's Together https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/description
@@ -26,10 +28,37 @@ Explanation: One possible solution that uses 3 swaps is [0,0,0,0,0,1,1,1,1,1,1].
         int[] data1 = {1, 0, 1, 0, 1};
         int res1 = new P1151_Minimum_Swaps_to_Group_All_1s_Together().minSwaps(data1);
         System.out.println(res1);
+
+        int[] data2 = {1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1};
+        int res2 = new P1151_Minimum_Swaps_to_Group_All_1s_Together().minSwaps(data2);
+        System.out.println(res2);
     }
 
     int minSwaps(int[] data) {
 
-        return 0;
+        var totalOnes = 0;
+        for (var i : data) {
+            totalOnes += i;
+        }
+
+        var currentOnes = 0;
+        for (var i = 0; i < totalOnes; i++) {
+            if (data[i] == 1) {
+                currentOnes++;
+            }
+        }
+
+        var minZeroes = totalOnes - currentOnes;
+        for (int i = totalOnes; i < data.length; i++) {
+            if (data[i] == 1) {
+                currentOnes++;
+            }
+            if (data[i - totalOnes] == 1) {
+                currentOnes--;
+            }
+            minZeroes = Math.min(minZeroes, totalOnes - currentOnes);
+        }
+
+        return minZeroes;
     }
 }
