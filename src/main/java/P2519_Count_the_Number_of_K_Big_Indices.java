@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class P2519_Count_the_Number_of_K_Big_Indices {
     /*
     2519. Count the Number of K-Big Indices https://leetcode.com/problems/count-the-number-of-k-big-indices/description
@@ -28,8 +32,68 @@ Explanation: There are no 3-big indices in nums.
     }
 
     int kBigIndices(int[] nums, int k) {
+        int n = nums.length;
+        if (k >= n) return 0;
 
-        return 0;
+        int[] sortedNums = nums.clone();
+        Arrays.sort(sortedNums);
+        Map<Integer, Integer> ranks = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            ranks.putIfAbsent(sortedNums[i], ranks.size() + 1);
+        }
+
+        int[] leftCounts = new int[n];
+        int[] rightCounts = new int[n];
+        FenwickTree tree = new FenwickTree(n);
+
+        for (int i = 0; i < n; i++) {
+            int rank = ranks.get(nums[i]);
+            leftCounts[i] = tree.query(rank - 1);
+            tree.update(rank, 1);
+        }
+
+        tree = new FenwickTree(n);
+
+        for (int i = n - 1; i >= 0; i--) {
+            int rank = ranks.get(nums[i]);
+            rightCounts[i] = tree.query(rank - 1);
+            tree.update(rank, 1);
+        }
+
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (leftCounts[i] >= k && rightCounts[i] >= k) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    class FenwickTree {
+        private int[] tree;
+        private int size;
+
+        public FenwickTree(int size) {
+            this.size = size;
+            this.tree = new int[size + 1];
+        }
+
+        public void update(int index, int delta) {
+            while (index <= size) {
+                tree[index] += delta;
+                index += index & (-index);
+            }
+        }
+
+        public int query(int index) {
+            int sum = 0;
+            while (index > 0) {
+                sum += tree[index];
+                index -= index & (-index);
+            }
+            return sum;
+        }
     }
 
 
@@ -51,7 +115,7 @@ Explanation: There are no 3-big indices in nums.
                 if (nums[j] < nums[i]) {
                     countLessBefore++;
                 }
-                if (countLessBefore >= k){
+                if (countLessBefore >= k) {
                     break;
                 }
             }
@@ -60,7 +124,7 @@ Explanation: There are no 3-big indices in nums.
                 if (nums[j] < nums[i]) {
                     countLessAfter++;
                 }
-                if (countLessAfter >= k){
+                if (countLessAfter >= k) {
                     break;
                 }
             }
