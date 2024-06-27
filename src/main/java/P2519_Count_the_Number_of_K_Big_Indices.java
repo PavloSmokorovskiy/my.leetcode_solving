@@ -1,6 +1,4 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class P2519_Count_the_Number_of_K_Big_Indices {
     /*
@@ -27,11 +25,91 @@ Explanation: There are no 3-big indices in nums.
     public static void main(String[] args) {
         var nums1 = new int[]{2, 3, 6, 5, 2, 3};
         var k1 = 2;
-        int res = new P2519_Count_the_Number_of_K_Big_Indices().kBigIndices(nums1, k1);
+        int res = new P2519_Count_the_Number_of_K_Big_Indices().kBigIndicesPriorityQueue(nums1, k1);
         System.out.println(res);
     }
 
-    int kBigIndices(int[] nums, int k) {
+    int kBigIndicesPriorityQueue(int[] nums, int k) {
+
+        var length = nums.length;
+        boolean[] flags = new boolean[length];
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
+
+        for (var i = 0; i < length; i++) {
+            if (pq.size() == k && pq.peek() < nums[i]) {
+                flags[i] = true;
+            }
+
+            pq.offer(nums[i]);
+
+            if (pq.size() > k) {
+                pq.poll();
+            }
+        }
+
+        pq.clear();
+
+        var counter = 0;
+
+        for (var i = length - 1; i >= 0; i--) {
+            if (pq.size() == k && pq.peek() < nums[i] && flags[i]) {
+                counter++;
+            }
+
+            pq.offer(nums[i]);
+
+            if (pq.size() > k) {
+                pq.poll();
+            }
+        }
+
+        return counter;
+    }
+
+
+
+
+    int kBigIndicesBruteForce(int[] nums, int k) {
+
+        var length = nums.length;
+        var result = 0;
+
+        if (k >= length) {
+            return result;
+        }
+
+        for (int i = k; i < length; i++) {
+
+            var countLessBefore = 0;
+            var countLessAfter = 0;
+
+            for (var j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    countLessBefore++;
+                }
+                if (countLessBefore >= k) {
+                    break;
+                }
+            }
+
+            for (var j = i + 1; j < length; j++) {
+                if (nums[j] < nums[i]) {
+                    countLessAfter++;
+                }
+                if (countLessAfter >= k) {
+                    break;
+                }
+            }
+
+            if (countLessBefore >= k && countLessAfter >= k) {
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+    int kBigIndicesFenwickTree(int[] nums, int k) {
         int n = nums.length;
         if (k >= n) return 0;
 
@@ -94,46 +172,5 @@ Explanation: There are no 3-big indices in nums.
             }
             return sum;
         }
-    }
-
-
-    int kBigIndicesBruteForce(int[] nums, int k) {
-
-        var length = nums.length;
-        var result = 0;
-
-        if (k >= length) {
-            return result;
-        }
-
-        for (int i = k; i < length; i++) {
-
-            var countLessBefore = 0;
-            var countLessAfter = 0;
-
-            for (var j = 0; j < i; j++) {
-                if (nums[j] < nums[i]) {
-                    countLessBefore++;
-                }
-                if (countLessBefore >= k) {
-                    break;
-                }
-            }
-
-            for (var j = i + 1; j < length; j++) {
-                if (nums[j] < nums[i]) {
-                    countLessAfter++;
-                }
-                if (countLessAfter >= k) {
-                    break;
-                }
-            }
-
-            if (countLessBefore >= k && countLessAfter >= k) {
-                result++;
-            }
-        }
-
-        return result;
     }
 }
