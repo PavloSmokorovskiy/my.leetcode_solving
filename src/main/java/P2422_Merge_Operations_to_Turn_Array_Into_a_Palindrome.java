@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome {
     /*
     2422. Merge Operations to Turn Array Into a Palindrome https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/description
@@ -23,19 +28,44 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
      */
 
     public static void main(String[] args) {
-        int[] nums1 = {4, 3, 2, 1, 2, 3, 1};
-        int res1 = new P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperations(nums1);
-        System.out.println(res1);
+//        int[] nums1 = {4, 3, 2, 1, 2, 3, 1};
+//        int res1 = new P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperations(nums1);
+//        System.out.println(res1);
+
+        int[] nums2 = {1,2,3,4};
+        int res2 = new P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperations(nums2);
+        System.out.println(res2);
     }
 
     int minimumOperations(int[] nums) {
 
-
-
-
-
-
-
         return 0;
+    }
+
+    int minimumOperationsBruteForce(int[] nums) {
+
+        List<Integer> list = new ArrayList<>();
+        for (var i : nums) {
+            list.add(i);
+        }
+        var counter = 0;
+
+        for (int i = 0; i < list.size() / 2; i++) {
+
+            while (list.get(i) != list.get(list.size() - 1 - i)) {
+                if(list.get(i) < list.get(list.size() - 1 - i)) {
+                    list.set(i, list.get(i) + list.get(i + 1));
+                    list.remove(i + 1);
+                    counter++;
+                } else if (list.get(i) > list.get(list.size() - 1 - i)) {
+                    list.set((list.size() - 1 - i - 1), list.get(list.size() - 1 - i) + list.get(list.size() - 1 - i - 1));
+                    list.remove(list.size() - 1 - i);
+                    counter++;
+                }
+            }
+
+        }
+
+        return counter;
     }
 }
