@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,14 +33,59 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
 //        int res1 = new P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperations(nums1);
 //        System.out.println(res1);
 
-        int[] nums2 = {1,2,3,4};
-        int res2 = new P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperations(nums2);
+        int[] nums2 = {1, 2, 3, 4};
+        int res2 = new P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperationsPointers(nums2);
         System.out.println(res2);
     }
 
-    int minimumOperations(int[] nums) {
+    int minimumOperationsLRSum(int[] nums) {
+        int counter = 0,
+                left = 0,
+                right = nums.length - 1,
+                leftSum = nums[0],
+                rightSum = nums[nums.length - 1];
 
-        return 0;
+        while (left < right) {
+            if (leftSum == rightSum) {
+                left++;
+                right--;
+                leftSum = nums[left];
+                rightSum = nums[right];
+            } else if (leftSum < rightSum) {
+                left++;
+                leftSum += nums[left];
+                counter++;
+            } else {
+                right--;
+                rightSum += nums[right];
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    int minimumOperationsPointers(int[] nums) {
+
+        int counter = 0;
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            while (nums[left] != nums[right]) {
+                if (nums[left] < nums[right]) {
+                    nums[left + 1] += nums[left];
+                    left++;
+                } else {
+                    nums[right - 1] += nums[right];
+                    right--;
+                }
+                counter++;
+            }
+            left++;
+            right--;
+        }
+        return counter;
+
     }
 
     int minimumOperationsBruteForce(int[] nums) {
@@ -53,7 +99,7 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
         for (int i = 0; i < list.size() / 2; i++) {
 
             while (list.get(i) != list.get(list.size() - 1 - i)) {
-                if(list.get(i) < list.get(list.size() - 1 - i)) {
+                if (list.get(i) < list.get(list.size() - 1 - i)) {
                     list.set(i, list.get(i) + list.get(i + 1));
                     list.remove(i + 1);
                     counter++;
