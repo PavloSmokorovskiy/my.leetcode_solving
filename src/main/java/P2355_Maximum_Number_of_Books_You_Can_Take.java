@@ -139,7 +139,7 @@ It can be proven that 13 is the maximum number of books you can take.
         return max;
     }
 
-    long maximumBooksNonOptimized(int[] books) {
+    long maximumBooksBruteForce(int[] books) {
         int big, less, max = books[0];
 
         for (var i = 1; i < books.length; i++) {
