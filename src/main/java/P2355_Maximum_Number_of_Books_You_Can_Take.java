@@ -85,7 +85,7 @@ It can be proven that 13 is the maximum number of books you can take.
         }
 
         long ans = 0;
-        for(long x:dp)
+        for (long x : dp)
             ans = Math.max(ans, x);
 
         return ans;
@@ -132,7 +132,7 @@ It can be proven that 13 is the maximum number of books you can take.
             }
         }
 
-        for (long i : dp){
+        for (long i : dp) {
             max = Math.max(max, i);
         }
 
