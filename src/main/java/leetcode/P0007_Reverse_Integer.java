@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package leetcode;
 
 public class P0007_Reverse_Integer {
     /**

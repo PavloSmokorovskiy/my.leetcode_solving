@@ -1,3 +1,5 @@
+package leetcode;
+
 import java.util.*;
 
 public class P2519_Count_the_Number_of_K_Big_Indices {

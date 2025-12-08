@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package leetcode;
 
 public class P1151_Minimum_Swaps_to_Group_All_1s_Together {
     /*

@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+package leetcode;
 
 public class P1512_Number_of_Good_Pairs {
 

@@ -1,3 +1,5 @@
+package leetcode;
+
 public class P0206_Reverse_Linked_List {
     /**
      * 206. Reverse Linked List <a href=>https://leetcode.com/problems/reverse-linked-list/description/</a><p>

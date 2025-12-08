@@ -1,3 +1,5 @@
+package leetcode;
+
 public class P0235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree {
     /*
     235. Lowest Common Ancestor of a Binary Search Tree https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/

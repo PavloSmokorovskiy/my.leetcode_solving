@@ -1,3 +1,5 @@
+package leetcode;
+
 public class P0020_Valid_Parentheses {
 
     /*

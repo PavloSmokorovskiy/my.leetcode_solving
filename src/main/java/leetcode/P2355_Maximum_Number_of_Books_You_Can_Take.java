@@ -1,7 +1,8 @@
+package leetcode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 public class P2355_Maximum_Number_of_Books_You_Can_Take {
     /*
@@ -50,7 +51,7 @@ It can be proven that 13 is the maximum number of books you can take.
         System.out.println("Exp: 19: " + res1);
 
 //        int[] books2 = {7, 0, 3, 4, 5};
-//        long res2 = new P2355_Maximum_Number_of_Books_You_Can_Take().maximumBooks(books2);
+//        long res2 = new leetcode.P2355_Maximum_Number_of_Books_You_Can_Take().maximumBooks(books2);
 //        System.out.println("Exp: 12: " + res2);
 
     }

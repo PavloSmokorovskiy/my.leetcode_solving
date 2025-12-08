@@ -1,3 +1,5 @@
+package leetcode;
+
 public class P0704_Binary_Search {
     /**
      * 704. Binary Search <a href=>https://leetcode.com/problems/binary-search/description/</a><p>

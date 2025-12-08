@@ -1,3 +1,5 @@
+package leetcode;
+
 import java.util.*;
 
 public class P2405_Optimal_Partition_of_String {

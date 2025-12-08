@@ -1,3 +1,5 @@
+package leetcode;
+
 public class P0242_Valid_Anagram {
     /**
      * 242. Valid Anagram <a href=>https://leetcode.com/problems/valid-anagram/description/</a><p>

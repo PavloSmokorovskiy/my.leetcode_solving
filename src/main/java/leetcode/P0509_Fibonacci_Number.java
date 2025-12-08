@@ -1,3 +1,5 @@
+package leetcode;
+
 public class P0509_Fibonacci_Number {
     /**
      * 509. Fibonacci Number <a href=>https://leetcode.com/problems/fibonacci-number/description/</a><p>

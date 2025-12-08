@@ -1,3 +1,5 @@
+package leetcode;
+
 import java.util.*;
 
 public class P2781_Length_of_the_Longest_Valid_Substring {

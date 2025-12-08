@@ -1,8 +1,7 @@
+package leetcode;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome {
     /*
@@ -30,7 +29,7 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
 
     public static void main(String[] args) {
 //        int[] nums1 = {4, 3, 2, 1, 2, 3, 1};
-//        int res1 = new P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperations(nums1);
+//        int res1 = new leetcode.P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome().minimumOperations(nums1);
 //        System.out.println(res1);
 
         int[] nums2 = {1, 2, 3, 4};

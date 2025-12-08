@@ -1,9 +1,7 @@
-import java.util.ArrayList;
+package leetcode;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.OptionalInt;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class P1431_Kids_With_the_Greatest_Number_of_Candies {
     /*
