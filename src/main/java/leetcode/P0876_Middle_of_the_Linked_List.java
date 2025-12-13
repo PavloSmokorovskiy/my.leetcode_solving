@@ -25,10 +25,21 @@ public class P0876_Middle_of_the_Linked_List {
                 2, new ListNode(
                 3, new ListNode(
                 4, new ListNode(5)))));
-        System.out.println(new P0876_Middle_of_the_Linked_List().middleNode(head).val);
+        System.out.println(new P0876_Middle_of_the_Linked_List().middleNode1(head).val);
     }
 
-    ListNode middleNode(ListNode head) {
+    ListNode middleNode1(ListNode head) {
+        ListNode slow = head, fast = head;
+
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    ListNode middleNode2(ListNode head) {
         int length = 0;
         ListNode nextNode = head;
 
