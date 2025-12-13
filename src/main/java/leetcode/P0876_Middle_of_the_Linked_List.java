@@ -29,14 +29,14 @@ public class P0876_Middle_of_the_Linked_List {
     }
 
     ListNode middleNode1(ListNode head) {
-        ListNode slow = head, fast = head;
+        ListNode mid = head, end = head;
 
-        while (fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+        while (end != null && end.next != null) {
+            mid = mid.next;
+            end = end.next.next;
         }
 
-        return slow;
+        return mid;
     }
 
     ListNode middleNode2(ListNode head) {
