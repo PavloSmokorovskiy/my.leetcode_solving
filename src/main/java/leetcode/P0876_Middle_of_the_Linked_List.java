@@ -22,15 +22,31 @@ public class P0876_Middle_of_the_Linked_List {
     public static void main(String[] args) {
         var head = new ListNode(
                 1, new ListNode(
-                        2, new ListNode(
-                                3, new ListNode(
-                                        4, new ListNode(
-                                                5, new ListNode())))));
-        System.out.println(new P0876_Middle_of_the_Linked_List().middleNode(head));
+                2, new ListNode(
+                3, new ListNode(
+                4, new ListNode(5)))));
+        System.out.println(new P0876_Middle_of_the_Linked_List().middleNode(head).val);
     }
 
     ListNode middleNode(ListNode head) {
-        return null;
+        int length = 0;
+        ListNode nextNode = head;
+
+        while (nextNode != null) {
+            nextNode = nextNode.next;
+            length++;
+        }
+
+        int pos;
+        if (length % 2 == 0) pos = length / 2;
+        else pos = length / 2 + 1;
+
+        while (length != pos) {
+            head = head.next;
+            length--;
+        }
+
+        return head;
     }
 
     static class ListNode {
