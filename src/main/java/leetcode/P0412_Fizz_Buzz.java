@@ -3,7 +3,7 @@ package leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class P00412_Fizz_Buzz {
+public class P0412_Fizz_Buzz {
 
     /**
      * Given an integer n, return a string array answer (1-indexed) where:
@@ -30,12 +30,12 @@ public class P00412_Fizz_Buzz {
 
     public static void main(String[] args) {
         var input = 3;
-        System.out.println(new P00412_Fizz_Buzz().fizzBuzz1(input));
+        System.out.println(new P0412_Fizz_Buzz().fizzBuzz1(input));
     }
 
     List<String> fizzBuzz1(int n) {
 
-        var answer = new ArrayList<String>();
+        var answer = new ArrayList<String>(n);
         for (int i = 1; i <= n; i++) {
             boolean fizz = i % 3 == 0;
             boolean buzz = i % 5 == 0;
