@@ -40,11 +40,11 @@ public class P1672_Richest_Customer_Wealth {
     public static void main(String[] args) {
         int[][] accounts1 = {{1, 2, 3}, {3, 2, 1}};
         int[][] accounts2 = {{1, 5}, {7, 3}, {3, 5}};
-        int res = new P1672_Richest_Customer_Wealth().maximumWealth(accounts2);
+        int res = new P1672_Richest_Customer_Wealth().maximumWealth2(accounts2);
         System.out.println(res);
     }
 
-    public int maximumWealth(int[][] accounts) {
+    int maximumWealth1(int[][] accounts) {
         var res1 = new int[accounts.length];
         for (int i = 0; i < accounts.length; i++) {
             for (int j = 0; j < accounts[i].length; j++) {
@@ -59,5 +59,17 @@ public class P1672_Richest_Customer_Wealth {
         }
 
         return res2;
+    }
+
+    int maximumWealth2(int[][] accounts) {
+        var res = 0;
+        for (int[] acc : accounts) {
+            var temp = 0;
+            for (int i : acc) {
+                temp += i;
+            }
+            res = Math.max(res, temp);
+        }
+        return res;
     }
 }
