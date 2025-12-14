@@ -1,8 +1,8 @@
-package leetcode.quest;
+package leetcode;
 
 import java.util.Arrays;
 
-public class Q2_Shuffle_the_Array {
+public class P1470_Shuffle_the_Array {
 
     /**
      * Given the array nums consisting of 2n elements in the
@@ -28,7 +28,7 @@ public class Q2_Shuffle_the_Array {
         int[] nums = {2,5,1,3,4,7};
         var n = 3;
 
-        System.out.println(Arrays.toString(new Q2_Shuffle_the_Array().shuffle(nums, n)));
+        System.out.println(Arrays.toString(new P1470_Shuffle_the_Array().shuffle(nums, n)));
     }
 
     int[] shuffle(int[] nums, int n) {

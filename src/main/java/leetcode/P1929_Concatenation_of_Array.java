@@ -1,8 +1,8 @@
-package leetcode.quest;
+package leetcode;
 
 import java.util.Arrays;
 
-public class Q1_Concatenation_of_Array {
+public class P1929_Concatenation_of_Array {
 
     /**
      * Given an integer array nums of length n, you want to create an array ans
@@ -30,7 +30,7 @@ public class Q1_Concatenation_of_Array {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 1};
-        System.out.println(Arrays.toString(new Q1_Concatenation_of_Array().getConcatenation(nums)));
+        System.out.println(Arrays.toString(new P1929_Concatenation_of_Array().getConcatenation(nums)));
     }
 
     int[] getConcatenation(int[] nums) {
