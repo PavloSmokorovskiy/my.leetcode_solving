@@ -34,9 +34,9 @@ public class Q1_Concatenation_of_Array {
     }
 
     int[] getConcatenation(int[] nums) {
-        int n = nums.length;
-        int[] res = new int[2 * n];
-        for (int i = 0; i < 2 * n; i++) res[i] = nums[i % n];
+        var n = nums.length;
+        var res = new int[2 * n];
+        for (var i = 0; i < 2 * n; i++) res[i] = nums[i % n];
         return res;
     }
 }
