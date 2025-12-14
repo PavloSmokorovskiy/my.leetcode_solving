@@ -32,7 +32,15 @@ public class Q2_Shuffle_the_Array {
     }
 
     int[] shuffle(int[] nums, int n) {
-
-        return null;
+        var length = nums.length;
+        var arr = new int[length];
+        for (int i = 0, j = 0; j < length; i++) {
+            System.out.println(i + "I");
+            System.out.println(j + "J");
+            arr[j++] = nums[i];
+            arr[j++] = nums[i + n];
+            System.out.println(Arrays.toString(arr));
+        }
+        return arr;
     }
 }
