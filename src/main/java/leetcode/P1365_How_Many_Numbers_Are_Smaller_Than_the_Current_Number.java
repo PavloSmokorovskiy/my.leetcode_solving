@@ -32,11 +32,38 @@ public class P1365_How_Many_Numbers_Are_Smaller_Than_the_Current_Number {
 
     public static void main(String[] args) {
         int[] nums = {8, 1, 2, 2, 3};
-        System.out.println(Arrays.toString(new P1365_How_Many_Numbers_Are_Smaller_Than_the_Current_Number().smallerNumbersThanCurrent(nums)));
+        System.out.println(Arrays.toString(new P1365_How_Many_Numbers_Are_Smaller_Than_the_Current_Number().smallerNumbersThanCurrent1(nums)));
     }
 
-    int[] smallerNumbersThanCurrent(int[] nums) {
+    int[] smallerNumbersThanCurrent1(int[] nums) {
+        var f = new int[101];
+        for (var n : nums) f[n]++;
 
-        return null;
+        for (var i = 1; i <= 100; i++) {
+            f[i] += f[i - 1];
+        }
+
+        var res = new int[nums.length];
+        for (var i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) continue;
+            res[i] = f[nums[i] - 1];
+        }
+        return res;
+    }
+
+    int[] smallerNumbersThanCurrent2(int[] nums) {
+        var res = new int[nums.length];
+        var counter = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            for (int num : nums) {
+                if (nums[i] > num)
+                    counter++;
+            }
+            res[i] = counter;
+            counter = 0;
+        }
+
+        return res;
     }
 }
