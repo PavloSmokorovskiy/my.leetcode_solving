@@ -1,8 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class P0636_Exclusive_Time_of_Functions {
 
@@ -73,6 +71,31 @@ public class P0636_Exclusive_Time_of_Functions {
 
     int[] exclusiveTime(int n, List<String> logs) {
 
-        return null;
+        var res = new int[n];
+        var stack = new ArrayDeque<Integer>();
+        var prev = 0;
+
+        for (var log : logs) {
+            var p = log.split(":");
+            var id = Integer.parseInt(p[0]);
+            var type = p[1];
+            var t = Integer.parseInt(p[2]);
+
+            if (type.equals("start")) {
+                if (!stack.isEmpty()) {
+                    res[stack.peek()] += t - prev;
+                    stack.push(id);
+                    prev = t;
+                } else {
+                    stack.push(id);
+                }
+            } else {
+                res[stack.peek()] += t - prev + 1;
+                stack.pop();
+                prev = t + 1;
+            }
+        }
+
+        return res;
     }
 }
