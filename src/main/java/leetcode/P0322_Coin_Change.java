@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Arrays;
+
 public class P0322_Coin_Change {
 
     /**
@@ -28,10 +30,27 @@ public class P0322_Coin_Change {
     public static void main(String[] args) {
         int[] coins = {1, 2, 5};
         var amount = 11;
-        System.out.println(new P0322_Coin_Change().coinChange(coins, amount));
+        System.out.println(new P0322_Coin_Change().coinChange1(coins, amount));
     }
 
-    int coinChange(int[] coins, int amount) {
-        return 0;
+    int coinChange1(int[] coins, int amount) {
+        if (amount == 0) return 0;
+
+        int INF = amount + 1;
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, INF);
+        dp[0] = 0;
+
+        for (int x = 1; x <= amount; x++) {
+            for (int c : coins) {
+                if (x - c >= 0) {
+                    dp[x] = Math.min(dp[x], dp[x - c] + 1);
+                }
+            }
+        }
+
+        return dp[amount] == INF ? -1 : dp[amount];
     }
+
+
 }
