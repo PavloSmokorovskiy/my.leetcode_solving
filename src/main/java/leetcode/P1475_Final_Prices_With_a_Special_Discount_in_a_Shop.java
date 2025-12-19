@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 
 public class P1475_Final_Prices_With_a_Special_Discount_in_a_Shop {
@@ -38,10 +39,26 @@ public class P1475_Final_Prices_With_a_Special_Discount_in_a_Shop {
 
     public static void main(String[] args) {
         int[] prices = {8, 4, 6, 2, 3};
-        System.out.println(Arrays.toString(new P1475_Final_Prices_With_a_Special_Discount_in_a_Shop().finalPrices(prices)));
+        System.out.println(Arrays.toString(new P1475_Final_Prices_With_a_Special_Discount_in_a_Shop().finalPrices1(prices)));
     }
 
-    int[] finalPrices(int[] prices) {
+    int[] finalPrices1(int[] prices) {
+        var n = prices.length;
+        var res = Arrays.copyOf(prices, n);
+        var stack = new ArrayDeque<Integer>();
+
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && prices[i] <= prices[stack.peek()]) {
+                var j = stack.pop();
+                res[j] = prices[j] - prices[i];
+            }
+            stack.push(i);
+        }
+
+        return res;
+    }
+
+    int[] finalPrices2(int[] prices) {
         var res = new int[prices.length];
 
         for (int i = 0; i < prices.length; i++) {
