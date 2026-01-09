@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.ArrayDeque;
+
 public class P1700_Number_of_Students_Unable_to_Eat_Lunch {
 
     /**
@@ -38,12 +40,38 @@ public class P1700_Number_of_Students_Unable_to_Eat_Lunch {
      */
 
     public static void main(String[] args) {
-        int[] students = {1, 1, 0, 0}, sandwiches = {0, 1, 0, 1};
-        System.out.println(new P1700_Number_of_Students_Unable_to_Eat_Lunch().countStudents(students, sandwiches));
+        int[] students1 = {1, 1, 0, 0}, sandwiches1 = {0, 1, 0, 1};
+        int[] students2 = {1, 1, 1, 0, 0, 1}, sandwiches2 = {1, 0, 0, 0, 1, 1};
+        System.out.println(new P1700_Number_of_Students_Unable_to_Eat_Lunch().countStudents(students2, sandwiches2));
     }
 
     int countStudents(int[] students, int[] sandwiches) {
 
-        return 0;
+        var line = new ArrayDeque<Integer>(students.length);
+        for (var s : students)
+            line.offerLast(s);
+
+        for (int sandwich : sandwiches) {
+            if (line.isEmpty())
+                return 0;
+
+            var attemtps = line.size();
+            var taken = false;
+
+            while (!taken && attemtps > 0) {
+                var student = line.peek();
+                if (student == sandwich) {
+                    line.pollFirst();
+                    taken = true;
+                } else {
+                    line.offerLast(line.pollFirst());
+                    attemtps--;
+                }
+            }
+            if(!taken)
+                return line.size();
+        }
+
+        return line.size();
     }
 }
