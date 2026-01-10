@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class P1046_Last_Stone_Weight {
 
     /**
@@ -34,7 +37,19 @@ public class P1046_Last_Stone_Weight {
     }
 
     private int lastStoneWeight(int[] stones) {
+        var maxHeap = new PriorityQueue<Integer>(Comparator.reverseOrder());
+        for (var stone : stones)
+            maxHeap.offer(stone);
 
-        return 0;
+        while (maxHeap.size() > 1){
+            int heaviest = maxHeap.poll();
+            int secondHeaviest = maxHeap.poll();
+
+            if (heaviest != secondHeaviest) {
+                maxHeap.offer(heaviest - secondHeaviest);
+            }
+        }
+
+        return maxHeap.peek();
     }
 }
