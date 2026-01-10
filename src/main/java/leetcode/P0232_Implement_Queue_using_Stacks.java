@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class P0232_Implement_Queue_using_Stacks {
 
     /**
@@ -37,34 +40,43 @@ public class P0232_Implement_Queue_using_Stacks {
     public static void main(String[] args) {
         var actions = new String[]{"MyQueue", "push", "push", "peek", "pop", "empty"};
         var elements = new int[][]{{}, {1}, {2}, {}, {}, {}};
-        var queue = new P0232_Implement_Queue_using_Stacks().new MyQueue();
+        var queue = new MyQueue();
         queue.push(1);
         queue.push(2);
         System.out.println(queue.pop());
-
-
     }
 
-    private class MyQueue {
+    private static class MyQueue {
 
-        private MyQueue() {
+        Deque<Integer> in = new ArrayDeque<>();
+        Deque<Integer> out = new ArrayDeque<>();
 
+        public MyQueue() {
+        }
+
+        private void moveInToOut() {
+            if (!out.isEmpty()) return;
+            while (!in.isEmpty()) {
+                out.push(in.pop());
+            }
         }
 
         public void push(int x) {
-
+            in.push(x);
         }
 
         public int pop() {
-            return 0;
+            moveInToOut();
+            return out.pop();
         }
 
         public int peek() {
-            return 0;
+            moveInToOut();
+            return out.peek();
         }
 
         public boolean empty() {
-            return false;
+            return in.isEmpty() && out.isEmpty();
         }
     }
 }
