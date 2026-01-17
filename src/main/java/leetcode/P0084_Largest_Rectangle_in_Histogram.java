@@ -24,7 +24,7 @@ public class P0084_Largest_Rectangle_in_Histogram {
         System.out.println(new P0084_Largest_Rectangle_in_Histogram().largestRectangleArea1(heights));
     }
 
-    int largestRectangleArea1(int[] heights) {
+    private int largestRectangleArea1(int[] heights) {
         var stack = new ArrayDeque<Integer>();
         var n = heights.length;
         var maxArea = 0;
@@ -49,7 +49,7 @@ public class P0084_Largest_Rectangle_in_Histogram {
         return maxArea;
     }
 
-    int largestRectangleArea2(int[] heights) {
+    private int largestRectangleArea2(int[] heights) {
         var res = 0;
         var n = heights.length;
         var stack = new ArrayDeque<int[]>();

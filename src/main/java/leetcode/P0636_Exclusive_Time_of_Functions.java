@@ -1,6 +1,9 @@
 package leetcode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class P0636_Exclusive_Time_of_Functions {
 
@@ -24,8 +27,6 @@ public class P0636_Exclusive_Time_of_Functions {
      * <p>
      * Return the exclusive time of each function in an array, where the value at the ith index represents the exclusive
      * time for the function with ID i.
-     * <p>
-     * <p>
      * <p>
      * Example 1:
      * Input: n = 2, logs = ["0:start:0","1:start:2","1:end:5","0:end:6"]
@@ -69,7 +70,7 @@ public class P0636_Exclusive_Time_of_Functions {
         System.out.println(Arrays.toString(new P0636_Exclusive_Time_of_Functions().exclusiveTime(n, logs)));
     }
 
-    int[] exclusiveTime(int n, List<String> logs) {
+    private int[] exclusiveTime(int n, List<String> logs) {
 
         var res = new int[n];
         var stack = new ArrayDeque<Integer>();
@@ -95,7 +96,6 @@ public class P0636_Exclusive_Time_of_Functions {
                 prev = t + 1;
             }
         }
-
         return res;
     }
 }

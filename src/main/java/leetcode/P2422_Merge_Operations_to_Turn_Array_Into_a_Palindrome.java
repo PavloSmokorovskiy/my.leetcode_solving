@@ -4,27 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class P2422_Merge_Operations_to_Turn_Array_Into_a_Palindrome {
-    /*
-    2422. Merge Operations to Turn Array Into a Palindrome https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/description
-You are given an array nums consisting of positive integers.
-You can perform the following operation on the array any number of times:
-Choose any two adjacent elements and replace them with their sum.
-For example, if nums = [1,2,3,1], you can apply one operation to make it [1,5,1].
-Return the minimum number of operations needed to turn the array into a palindrome.
 
-Example 1:
-Input: nums = [4,3,2,1,2,3,1]
-Output: 2
-Explanation: We can turn the array into a palindrome in 2 operations as follows:
-- Apply the operation on the fourth and fifth element of the array, nums becomes equal to [4,3,2,3,3,1].
-- Apply the operation on the fifth and sixth element of the array, nums becomes equal to [4,3,2,3,4].
-The array [4,3,2,3,4] is a palindrome.
-It can be shown that 2 is the minimum number of operations needed.
-
-Example 2:
-Input: nums = [1,2,3,4]
-Output: 3
-Explanation: We do the operation 3 times in any position, we obtain the array [10] at the end which is a palindrome.
+    /**
+     * 2422. Merge Operations to Turn Array Into a Palindrome
+     * You are given an array nums consisting of positive integers.
+     * You can perform the following operation on the array any number of times:
+     * Choose any two adjacent elements and replace them with their sum.
+     * For example, if nums = [1,2,3,1], you can apply one operation to make it [1,5,1].
+     * Return the minimum number of operations needed to turn the array into a palindrome.
+     * <p>
+     * Example 1:
+     * Input: nums = [4,3,2,1,2,3,1]
+     * Output: 2
+     * Explanation: We can turn the array into a palindrome in 2 operations as follows:
+     * - Apply the operation on the fourth and fifth element of the array, nums becomes equal to [4,3,2,3,3,1].
+     * - Apply the operation on the fifth and sixth element of the array, nums becomes equal to [4,3,2,3,4].
+     * The array [4,3,2,3,4] is a palindrome.
+     * It can be shown that 2 is the minimum number of operations needed.
+     * <p>
+     * Example 2:
+     * Input: nums = [1,2,3,4]
+     * Output: 3
+     * Explanation: We do the operation 3 times in any position, we obtain the array [10] at the end which is a palindrome.
      */
 
     public static void main(String[] args) {
@@ -37,12 +38,8 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
         System.out.println(res2);
     }
 
-    int minimumOperationsLRSum(int[] nums) {
-        int counter = 0,
-                left = 0,
-                right = nums.length - 1,
-                leftSum = nums[0],
-                rightSum = nums[nums.length - 1];
+    private int minimumOperationsLRSum(int[] nums) {
+        int counter = 0, left = 0, right = nums.length - 1, leftSum = nums[0], rightSum = nums[nums.length - 1];
 
         while (left < right) {
             if (leftSum == rightSum) {
@@ -63,7 +60,7 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
         return counter;
     }
 
-    int minimumOperationsPointers(int[] nums) {
+    private int minimumOperationsPointers(int[] nums) {
 
         int counter = 0;
         int left = 0;
@@ -84,10 +81,9 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
             right--;
         }
         return counter;
-
     }
 
-    int minimumOperationsBruteForce(int[] nums) {
+    private int minimumOperationsBruteForce(int[] nums) {
 
         List<Integer> list = new ArrayList<>();
         for (var i : nums) {
@@ -110,7 +106,6 @@ Explanation: We do the operation 3 times in any position, we obtain the array [1
             }
 
         }
-
         return counter;
     }
 }

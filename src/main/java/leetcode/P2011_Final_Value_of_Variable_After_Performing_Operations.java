@@ -1,6 +1,7 @@
 package leetcode;
 
 public class P2011_Final_Value_of_Variable_After_Performing_Operations {
+
     /**
      * 2011. Final Value of Variable After Performing Operations <a href=>https://leetcode.com/problems/final-value-of-variable-after-performing-operations/description/</a><p>
      * There is a programming language with only four operations and one variable X:<p>
@@ -39,13 +40,14 @@ public class P2011_Final_Value_of_Variable_After_Performing_Operations {
      * --X: X is decremented by 1, X = 2 - 1 = 1.<p>
      * X--: X is decremented by 1, X = 1 - 1 = 0.<p>
      */
+
     public static void main(String[] args) {
         String[] input = {"--X", "X++", "X++"};
         int res = new P2011_Final_Value_of_Variable_After_Performing_Operations().finalValueAfterOperations(input);
         System.out.println(res);
     }
 
-    public int finalValueAfterOperations(String[] operations) {
+    private int finalValueAfterOperations(String[] operations) {
 
         var res = 0;
         for (String operation : operations) {

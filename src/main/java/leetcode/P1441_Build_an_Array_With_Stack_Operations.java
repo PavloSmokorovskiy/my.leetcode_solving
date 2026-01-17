@@ -60,7 +60,7 @@ public class P1441_Build_an_Array_With_Stack_Operations {
         System.out.println(new P1441_Build_an_Array_With_Stack_Operations().buildArray(target, n));
     }
 
-    List<String> buildArray(int[] target, int n) {
+    private List<String> buildArray(int[] target, int n) {
 
         var res = new LinkedList<String>();
         var stack = new LinkedList<Integer>();
@@ -69,13 +69,9 @@ public class P1441_Build_an_Array_With_Stack_Operations {
         for (int i = 1; i <= n && index < target.length; i++) {
             stack.add(i);
             res.add("Push");
-            if(target[index] == i)
-                index++;
-            else {
-                res.add("Pop");
-            }
+            if (target[index] == i) index++;
+            else res.add("Pop");
         }
-
         return res;
     }
 }

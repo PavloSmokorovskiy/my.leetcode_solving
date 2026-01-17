@@ -22,13 +22,14 @@ public class P1512_Number_of_Good_Pairs {
      * Input: nums = [1,2,3]<p>
      * Output: 0<p>
      */
+
     public static void main(String[] args) {
         var nums = new int[]{1, 2, 3, 1, 1, 3};
         int res = new P1512_Number_of_Good_Pairs().numIdenticalPairs1(nums);
         System.out.println(res);
     }
 
-    int numIdenticalPairs1(int[] nums) {
+    private int numIdenticalPairs1(int[] nums) {
 
         var pairs = 0;
         for (var i = 0; i < nums.length; i++) {
@@ -41,9 +42,9 @@ public class P1512_Number_of_Good_Pairs {
         return pairs / 2;
     }
 
-    public int numIdenticalPairs2(int[] A) {
+    private int numIdenticalPairs2(int[] A) {
         int ans = 0, cnt[] = new int[101];
-        for (int a: A) {
+        for (int a : A) {
             ans += cnt[a]++;
         }
         return ans;

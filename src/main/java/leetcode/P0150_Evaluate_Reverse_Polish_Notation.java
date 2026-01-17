@@ -2,7 +2,6 @@ package leetcode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Objects;
 
 public class P0150_Evaluate_Reverse_Polish_Notation {
 
@@ -46,22 +45,38 @@ public class P0150_Evaluate_Reverse_Polish_Notation {
 
     public static void main(String[] args) {
         String[] tokens1 = {"2", "1", "+", "3", "*"};
-        String[] tokens2 = {"4","13","5","/","+"};
+        String[] tokens2 = {"4", "13", "5", "/", "+"};
         System.out.println(new P0150_Evaluate_Reverse_Polish_Notation().evalRPN(tokens2));
     }
 
-    int evalRPN(String[] tokens) {
+    private int evalRPN(String[] tokens) {
 
         Deque<Integer> stack = new ArrayDeque<>();
         for (String s : tokens) {
-                switch (s) {
-                    case "+" -> { int a = stack.pop(); int b = stack.pop(); stack.push(b + a);}
-                    case "-" -> { int a = stack.pop(); int b = stack.pop(); stack.push(b - a);}
-                    case "*" -> { int a = stack.pop(); int b = stack.pop(); stack.push(b * a);}
-                    case "/" -> { int a = stack.pop(); int b = stack.pop(); stack.push(b / a);}
-                    default -> stack.push(Integer.parseInt(s));
+            switch (s) {
+                case "+" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(b + a);
                 }
+                case "-" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(b - a);
+                }
+                case "*" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(b * a);
+                }
+                case "/" -> {
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(b / a);
+                }
+                default -> stack.push(Integer.parseInt(s));
             }
+        }
 
         return stack.pop();
     }

@@ -34,10 +34,9 @@ public class P0007_Reverse_Integer {
             digit = x % 10;
             res = res * 10 + digit;
             x = x / 10;
-            if (res > Integer.MAX_VALUE || res < Integer.MIN_VALUE)
-                return 0;
+            if (res > Integer.MAX_VALUE || res < Integer.MIN_VALUE) return 0;
         }
 
-        return (int)res;
+        return (int) res;
     }
 }

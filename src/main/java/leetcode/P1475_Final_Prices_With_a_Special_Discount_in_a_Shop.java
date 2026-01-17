@@ -42,7 +42,7 @@ public class P1475_Final_Prices_With_a_Special_Discount_in_a_Shop {
         System.out.println(Arrays.toString(new P1475_Final_Prices_With_a_Special_Discount_in_a_Shop().finalPrices1(prices)));
     }
 
-    int[] finalPrices1(int[] prices) {
+    private int[] finalPrices1(int[] prices) {
         var n = prices.length;
         var res = Arrays.copyOf(prices, n);
         var stack = new ArrayDeque<Integer>();
@@ -54,11 +54,10 @@ public class P1475_Final_Prices_With_a_Special_Discount_in_a_Shop {
             }
             stack.push(i);
         }
-
         return res;
     }
 
-    int[] finalPrices2(int[] prices) {
+    private int[] finalPrices2(int[] prices) {
         var res = new int[prices.length];
 
         for (int i = 0; i < prices.length; i++) {
@@ -70,7 +69,6 @@ public class P1475_Final_Prices_With_a_Special_Discount_in_a_Shop {
                 }
             }
         }
-
         return res;
     }
 }

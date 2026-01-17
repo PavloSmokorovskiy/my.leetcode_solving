@@ -21,7 +21,7 @@ public class P0485_Max_Consecutive_Ones {
         System.out.println(new P0485_Max_Consecutive_Ones().findMaxConsecutiveOnes(nums));
     }
 
-    int findMaxConsecutiveOnes(int[] nums) {
+    private int findMaxConsecutiveOnes(int[] nums) {
         var max = 0;
         var count = 0;
 

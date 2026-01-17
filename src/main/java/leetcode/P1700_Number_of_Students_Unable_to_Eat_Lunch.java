@@ -45,15 +45,14 @@ public class P1700_Number_of_Students_Unable_to_Eat_Lunch {
         System.out.println(new P1700_Number_of_Students_Unable_to_Eat_Lunch().countStudents(students2, sandwiches2));
     }
 
-    int countStudents(int[] students, int[] sandwiches) {
+    private int countStudents(int[] students, int[] sandwiches) {
 
         var line = new ArrayDeque<Integer>(students.length);
         for (var s : students)
             line.offerLast(s);
 
         for (int sandwich : sandwiches) {
-            if (line.isEmpty())
-                return 0;
+            if (line.isEmpty()) return 0;
 
             var attemtps = line.size();
             var taken = false;
@@ -68,8 +67,7 @@ public class P1700_Number_of_Students_Unable_to_Eat_Lunch {
                     attemtps--;
                 }
             }
-            if(!taken)
-                return line.size();
+            if (!taken) return line.size();
         }
 
         return line.size();

@@ -20,15 +20,11 @@ public class P0876_Middle_of_the_Linked_List {
      */
 
     public static void main(String[] args) {
-        var head = new ListNode(
-                1, new ListNode(
-                2, new ListNode(
-                3, new ListNode(
-                4, new ListNode(5)))));
+        var head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         System.out.println(new P0876_Middle_of_the_Linked_List().middleNode1(head).val);
     }
 
-    ListNode middleNode1(ListNode head) {
+    private ListNode middleNode1(ListNode head) {
         ListNode mid = head, end = head;
 
         while (end != null && end.next != null) {
@@ -39,7 +35,7 @@ public class P0876_Middle_of_the_Linked_List {
         return mid;
     }
 
-    ListNode middleNode2(ListNode head) {
+    private ListNode middleNode2(ListNode head) {
         int length = 0;
         ListNode nextNode = head;
 
@@ -60,7 +56,7 @@ public class P0876_Middle_of_the_Linked_List {
         return head;
     }
 
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

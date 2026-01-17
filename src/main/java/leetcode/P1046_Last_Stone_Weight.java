@@ -41,7 +41,7 @@ public class P1046_Last_Stone_Weight {
         for (var stone : stones)
             maxHeap.offer(stone);
 
-        while (maxHeap.size() > 1){
+        while (maxHeap.size() > 1) {
             int heaviest = maxHeap.poll();
             int secondHeaviest = maxHeap.poll();
 

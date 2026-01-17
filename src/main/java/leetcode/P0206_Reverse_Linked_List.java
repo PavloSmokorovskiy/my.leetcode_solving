@@ -17,6 +17,7 @@ public class P0206_Reverse_Linked_List {
      * Input: head = []<p>
      * Output: []<p>
      */
+
     public static void main(String[] args) throws CloneNotSupportedException {
         ListNode ln1 = new ListNode(5);
         ListNode ln2 = new ListNode(4, ln1);

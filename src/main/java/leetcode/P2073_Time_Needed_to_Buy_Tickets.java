@@ -50,12 +50,9 @@ public class P2073_Time_Needed_to_Buy_Tickets {
         var time = 0;
         var need = tickets[k];
         for (var i = 0; i < tickets.length; i++) {
-            if (i < k)
-                time += Math.min(tickets[i], need);
-            else if (i == k)
-                time += need;
-            else
-                time += Math.min(tickets[i], need - 1);
+            if (i < k) time += Math.min(tickets[i], need);
+            else if (i == k) time += need;
+            else time += Math.min(tickets[i], need - 1);
         }
         return time;
     }

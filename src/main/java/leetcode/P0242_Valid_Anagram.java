@@ -15,6 +15,7 @@ public class P0242_Valid_Anagram {
      * Input: s = "rat", t = "car"<p>
      * Output: false<p>
      */
+
     public static void main(String[] args) {
         String s = "anagram", t = "nagaram";
         boolean res = new P0242_Valid_Anagram().isAnagram(s, t);

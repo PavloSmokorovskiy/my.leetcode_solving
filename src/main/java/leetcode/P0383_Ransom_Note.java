@@ -1,6 +1,5 @@
 package leetcode;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +30,7 @@ public class P0383_Ransom_Note {
         System.out.println(new P0383_Ransom_Note().canConstruct1(ransomNote, magazine));
     }
 
-    boolean canConstruct1(String ransomNote, String magazine) {
+    private boolean canConstruct1(String ransomNote, String magazine) {
         Map<Character, Integer> alphabet = new HashMap<>(26);
         for (Character c : magazine.toCharArray()) alphabet.put(c, alphabet.getOrDefault(c, 0) + 1);
         for (Character c : ransomNote.toCharArray()) {
@@ -42,7 +41,7 @@ public class P0383_Ransom_Note {
         return true;
     }
 
-    boolean canConstruct2(String ransomNote, String magazine) {
+    private boolean canConstruct2(String ransomNote, String magazine) {
         int[] alphabet = new int[26];
         int index;
         for (char c : ransomNote.toCharArray()) {
@@ -53,7 +52,7 @@ public class P0383_Ransom_Note {
         return true;
     }
 
-    boolean canConstruct3(String ransomNote, String magazine) {
+    private boolean canConstruct3(String ransomNote, String magazine) {
         int[] letters = new int[26];
         for (char c : magazine.toCharArray()) {
             letters[c - 'a']++;
@@ -66,7 +65,7 @@ public class P0383_Ransom_Note {
         return true;
     }
 
-    boolean canConstruct4(String ransomNote, String magazine) {
+    private boolean canConstruct4(String ransomNote, String magazine) {
 
         char[] magArr = magazine.toCharArray();
 
@@ -85,7 +84,7 @@ public class P0383_Ransom_Note {
         return true;
     }
 
-    boolean canConstruct5(String ransomNote, String magazine) {
+    private boolean canConstruct5(String ransomNote, String magazine) {
 
         Integer[] magArr = new Integer[magazine.length()];
         for (int i = 0; i < magazine.length(); i++) {

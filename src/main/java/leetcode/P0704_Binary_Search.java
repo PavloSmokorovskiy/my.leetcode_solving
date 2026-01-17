@@ -18,8 +18,9 @@ public class P0704_Binary_Search {
      * Output: -1<p>
      * Explanation: 2 does not exist in nums so return -1<p>
      */
+
     public static void main(String[] args) {
-        int[] nums = {-1,0,3,5,9,12};
+        int[] nums = {-1, 0, 3, 5, 9, 12};
         var target = 9;
         int res = new P0704_Binary_Search().search(nums, target);
         System.out.println(res);

@@ -28,7 +28,7 @@ public class P0739_Daily_Temperatures {
         System.out.println(Arrays.toString(new P0739_Daily_Temperatures().dailyTemperatures1(temperatures)));
     }
 
-    int[] dailyTemperatures1(int[] temperatures) {
+    private int[] dailyTemperatures1(int[] temperatures) {
         var n = temperatures.length;
         var res = new int[n];
         var stack = new ArrayDeque<Integer>();
@@ -42,7 +42,7 @@ public class P0739_Daily_Temperatures {
         return res;
     }
 
-    int[] dailyTemperatures2(int[] temperatures) {
+    private int[] dailyTemperatures2(int[] temperatures) {
         var res = new int[temperatures.length];
         for (var i = 0; i < temperatures.length; i++) {
             for (var j = i + 1; j < temperatures.length; j++) {

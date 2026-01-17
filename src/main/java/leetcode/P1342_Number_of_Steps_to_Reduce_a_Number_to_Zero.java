@@ -4,14 +4,11 @@ public class P1342_Number_of_Steps_to_Reduce_a_Number_to_Zero {
 
     /**
      * Given an integer num, return the number of steps to reduce it to zero.
-     *
+     * <p>
      * In one step, if the current number is even, you have to divide it by 2,
      * otherwise, you have to subtract 1 from it.
-     *
-     *
-     *
+     * <p>
      * Example 1:
-     *
      * Input: num = 14
      * Output: 6
      * Explanation:
@@ -21,8 +18,8 @@ public class P1342_Number_of_Steps_to_Reduce_a_Number_to_Zero {
      * Step 4) 3 is odd; subtract 1 and obtain 2.
      * Step 5) 2 is even; divide by 2 and obtain 1.
      * Step 6) 1 is odd; subtract 1 and obtain 0.
+     * <p>
      * Example 2:
-     *
      * Input: num = 8
      * Output: 4
      * Explanation:
@@ -30,8 +27,8 @@ public class P1342_Number_of_Steps_to_Reduce_a_Number_to_Zero {
      * Step 2) 4 is even; divide by 2 and obtain 2.
      * Step 3) 2 is even; divide by 2 and obtain 1.
      * Step 4) 1 is odd; subtract 1 and obtain 0.
+     * <p>
      * Example 3:
-     *
      * Input: num = 123
      * Output: 12
      */
@@ -41,9 +38,9 @@ public class P1342_Number_of_Steps_to_Reduce_a_Number_to_Zero {
         System.out.println(new P1342_Number_of_Steps_to_Reduce_a_Number_to_Zero().numberOfSteps(input));
     }
 
-    int numberOfSteps(int num) {
+    private int numberOfSteps(int num) {
         var res = 0;
-        while (num != 0){
+        while (num != 0) {
             if (num % 2 == 0) num = num / 2;
             else num = num - 1;
             res++;

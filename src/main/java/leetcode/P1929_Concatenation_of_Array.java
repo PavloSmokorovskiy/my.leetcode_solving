@@ -33,7 +33,7 @@ public class P1929_Concatenation_of_Array {
         System.out.println(Arrays.toString(new P1929_Concatenation_of_Array().getConcatenation(nums)));
     }
 
-    int[] getConcatenation(int[] nums) {
+    private int[] getConcatenation(int[] nums) {
         var n = nums.length;
         var res = new int[2 * n];
         for (var i = 0; i < 2 * n; i++) res[i] = nums[i % n];

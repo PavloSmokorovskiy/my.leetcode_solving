@@ -1,8 +1,6 @@
 package leetcode;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class P0645_Set_Mismatch {
 
@@ -34,7 +32,7 @@ public class P0645_Set_Mismatch {
         System.out.println(Arrays.toString(new P0645_Set_Mismatch().findErrorNums(nums1)));
     }
 
-    int[] findErrorNums(int[] nums) {
+    private int[] findErrorNums(int[] nums) {
         var res = new int[2];
         var seen = new boolean[nums.length + 1];
 

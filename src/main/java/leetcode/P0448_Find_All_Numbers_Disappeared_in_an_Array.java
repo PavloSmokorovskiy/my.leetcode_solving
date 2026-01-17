@@ -1,7 +1,6 @@
 package leetcode;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class P0448_Find_All_Numbers_Disappeared_in_an_Array {
@@ -25,7 +24,7 @@ public class P0448_Find_All_Numbers_Disappeared_in_an_Array {
         System.out.println(new P0448_Find_All_Numbers_Disappeared_in_an_Array().findDisappearedNumbers(nums));
     }
 
-    List<Integer> findDisappearedNumbers(int[] nums) {
+    private List<Integer> findDisappearedNumbers(int[] nums) {
         var res = new ArrayList<Integer>();
         var seen = new boolean[nums.length + 1];
 
@@ -33,8 +32,7 @@ public class P0448_Find_All_Numbers_Disappeared_in_an_Array {
             seen[num] = true;
 
         for (int i = 1; i < seen.length; i++)
-            if (!seen[i])
-                res.add(i);
+            if (!seen[i]) res.add(i);
 
         return res;
     }

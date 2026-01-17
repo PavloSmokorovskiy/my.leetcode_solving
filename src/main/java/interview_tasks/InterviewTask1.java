@@ -1,3 +1,5 @@
+package interview_tasks;
+
 import java.util.HashMap;
 import java.util.Map;
 
