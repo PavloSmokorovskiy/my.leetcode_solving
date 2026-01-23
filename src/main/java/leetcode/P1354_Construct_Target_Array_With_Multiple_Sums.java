@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 public class P1354_Construct_Target_Array_With_Multiple_Sums {
 
     /**
@@ -36,8 +39,32 @@ public class P1354_Construct_Target_Array_With_Multiple_Sums {
     }
 
     private boolean isPossible(int[] target) {
+        int n = target.length;
+        if (n == 0) return false;
+        if (n == 1) return target[0] == 1;
 
+        PriorityQueue<Long> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        long sum = 0;
+        for (long num : target) {
+            sum += num;
+            maxHeap.offer(num);
+        }
 
-        return false;
+        while (true) {
+            long max = maxHeap.poll();
+
+            if (max == 1) return true;
+
+            long rest = sum - max;
+
+            if (rest == 0) return false;
+            if (rest >= max) return false;
+
+            long old = max % rest;
+            if (old == 0) old = rest;
+
+            sum = rest + old;
+            maxHeap.offer(old);
+        }
     }
 }
