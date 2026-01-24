@@ -25,8 +25,58 @@ public class P0520_Detect_Capital {
         System.out.println(new P0520_Detect_Capital().detectCapitalUse(word));
     }
 
+    /**
+     * 1. length == 1 -> true
+     * <p>
+     * Success cases:
+     * a) USA
+     * b) small
+     * c) Giraffe
+     * <p>
+     * 2. See first and second letters.
+     * - If both Capital -> a -> GOTO 3
+     * - If both small -> b -> GOTO 4
+     * - If first is Capital second is small -> c
+     * - If first is small second is Capital -> false
+     * <p>
+     * 3. Capital solution: count all Capital == word.length
+     * 4. Small solution: count all small == word.length
+     * 5. Giraff solution: count rest == word.length - 1
+     * <p>
+     * 6. Regular expression [A-Z][a-z] - overenineering
+     */
+
     private boolean detectCapitalUse(String word) {
 
-        return false;
+        int n = word.length();
+        if (n == 1)
+            return true;
+
+        boolean firstUpper = Character.isUpperCase(word.charAt(0));
+        boolean secondUpper = Character.isUpperCase(word.charAt(1));
+
+        //if the first small
+        if (!firstUpper) {
+            // rest small
+            for (int i = 1; i < n; i++)
+                if (Character.isUpperCase(word.charAt(i)))
+                    return false;
+            return true;
+        }
+
+        //if the first upper:
+        if (secondUpper) {
+            // rest upper
+            for (int i = 1; i < n; i++)
+                if (!Character.isUpperCase(word.charAt(i)))
+                    return false;
+            return true;
+        } else {
+            // rest small
+            for (int i = 1; i < n; i++)
+                if (Character.isUpperCase(word.charAt(i)))
+                    return false;
+            return true;
+        }
     }
 }
