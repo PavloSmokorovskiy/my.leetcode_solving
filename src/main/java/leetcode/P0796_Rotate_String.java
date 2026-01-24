@@ -25,7 +25,7 @@ public class P0796_Rotate_String {
     }
 
     private boolean rotateString(String s, String goal) {
-
-        return false;
+        if (s.length() != goal.length()) return false;
+        return (s + s).contains(goal);
     }
 }

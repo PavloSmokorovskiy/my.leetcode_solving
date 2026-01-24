@@ -28,6 +28,16 @@ public class P0686_Repeated_String_Match {
 
     private int repeatedStringMatch(String a, String b) {
 
-        return 0;
+        int lenA = a.length();
+        int lenB = b.length();
+        int k = (int) (Math.ceil((double) lenB / lenA));
+        StringBuilder sb = new StringBuilder();
+        sb.append(a.repeat(Math.max(0, k)));
+        String s = sb.toString();
+        if (s.contains(b)) return k;
+        sb.append(a);
+        s = sb.toString();
+        if (s.contains(b)) return k + 1;
+        return -1;
     }
 }
