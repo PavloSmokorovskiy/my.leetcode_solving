@@ -32,8 +32,41 @@ public class P0482_License_Key_Formatting {
         System.out.println(new P0482_License_Key_Formatting().licenseKeyFormatting(s, k));
     }
 
+    /**
+     * "2-5g-3-J" -> "2-5G-3J", k = 2
+     * <p>
+     * 1. Work with reversed String
+     * a) "J-3-g5-2"
+     * ^
+     * "J"
+     * <p>
+     * b) "J3g52"
+     * ^
+     * "J3-G5-2"
+     * <p>
+     * 2. is letter -> put it as Capital to StringBuilder
+     * 3. is dash -> 1) skip 2) move index
+     * 4. put dash every k next elements
+     */
+
     private String licenseKeyFormatting(String s, int k) {
 
-        return null;
+        int n = s.length();
+        if (n == 0) return "";
+
+        StringBuilder res = new StringBuilder();
+        int groupCounter = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+            char ch = s.charAt(i);
+            if (ch == '-') continue;
+            if (groupCounter == k) {
+                res.append("-");
+                groupCounter = 0;
+            }
+            res.append(Character.toUpperCase(ch));
+            groupCounter++;
+        }
+        return res.reverse().toString();
     }
 }
