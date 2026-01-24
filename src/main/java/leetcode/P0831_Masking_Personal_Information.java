@@ -61,8 +61,74 @@ public class P0831_Masking_Personal_Information {
         System.out.println(new P0831_Masking_Personal_Information().maskPII(s));
     }
 
+    /**
+     * 1. is letter (String.contains('@'))
+     * - email
+     * else
+     * - phone
+     * <p>
+     * 2. result in StringBuilder
+     * <p>
+     * 4. email mask
+     * "LeetCode@LeetCode.com"
+     * ^
+     * "l*****e@leetcode.com"
+     * - split on 2 substr using '@'
+     * <p>
+     * from 1 substr, add to result:
+     * - first letter as lovercase
+     * - "****" with length 1 substr - 2
+     * - last letter of 1 substr as lovercase
+     * <p>
+     * - add '@' to result
+     * <p>
+     * from 2 substr, add to result:
+     * - all domain in lovercase
+     * <p>
+     * 5. phone mask is reversed "XXXX-XXX-XXX" + "-*+" or "-**+" or "-***+"
+     * "098-765(432)1"
+     * ^
+     * "0987-***-***"
+     * <p>
+     * - remove all non Digital
+     * <p>
+     * "0987 654 321          321"
+     * ^
+     * "0987" + "-***-***"+ "-" + "***" + "+"
+     * - put first 4 numbers
+     * - put "-***-***"
+     * - count rest numbers
+     * - put "-"
+     * - put "***" equals to rest
+     * - put "+"
+     */
+
     private String maskPII(String s) {
 
-        return null;
+        StringBuilder result = new StringBuilder();
+        if (s.contains("@")) {
+            String lower = s.toLowerCase();
+            String[] parts = lower.split("@");
+            String name = parts[0];
+            String domain = parts[1];
+
+            result.append(name.charAt(0));
+            result.append("*****");
+            result.append(name.charAt(name.length() - 1));
+            result.append("@");
+            result.append(domain);
+        } else {
+            String digits = new StringBuilder(s.replaceAll("[^0-9]", "")).reverse().toString();
+            result.append(digits, 0, 4);
+            result.append("-***-***");
+            if (digits.length() > 10) {
+                result.append("-");
+                result.append("*".repeat(digits.length() - 10));
+                result.append("+");
+            }
+            result.reverse();
+        }
+
+        return result.toString();
     }
 }
