@@ -18,12 +18,23 @@ public class P0083_Remove_Duplicates_from_Sorted_List {
 
     public static void main(String[] args) {
         var head = new ListNode(1, new ListNode(1, new ListNode(2)));
-        System.out.println(new P0083_Remove_Duplicates_from_Sorted_List().deleteDuplicates(head));
+        ListNode list = new P0083_Remove_Duplicates_from_Sorted_List().deleteDuplicates(head);
+        while (list != null) {
+            System.out.println(list.val);
+            list = list.next;
+        }
     }
 
     private ListNode deleteDuplicates(ListNode head) {
 
-        return null;
+        ListNode current = head;
+
+        while (current != null && current.next != null) {
+            if (current.val == current.next.val) current.next = current.next.next;
+            else current = current.next;
+        }
+
+        return head;
     }
 
     private static class ListNode {
