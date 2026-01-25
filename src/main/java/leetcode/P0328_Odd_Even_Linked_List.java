@@ -29,7 +29,24 @@ public class P0328_Odd_Even_Linked_List {
 
     private ListNode oddEvenList(ListNode head) {
 
-        return null;
+        if (head == null || head.next == null) return head;
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = even;
+
+        while (even != null && even.next != null) {
+            //link the current odd node to the next odd
+            odd.next = odd.next.next;
+            //move odd pointer next
+            odd = odd.next;
+            //link the current even node to the next even
+            even.next = even.next.next;
+            //move even pointer next
+            even = even.next;
+        }
+        //link the tail of odd to the head of even
+        odd.next = evenHead;
+        return head;
     }
 
     private static class ListNode {
