@@ -31,6 +31,22 @@ public class P0041_First_Missing_Positive {
 
     private int firstMissingPositive(int[] nums) {
 
-        return 0;
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            while (nums[i] >= 1 && nums[i] <= n) {
+                int v = nums[i];
+                int correctIdx = v - 1;
+                if (nums[correctIdx] == v) break;
+                int tmp = nums[correctIdx];
+                nums[correctIdx] = v;
+                nums[i] = tmp;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i + 1) return i + 1;
+        }
+
+        return n + 1;
     }
 }
