@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class P0138_Copy_List_with_Random_Pointer {
 
     /**
@@ -71,7 +74,22 @@ public class P0138_Copy_List_with_Random_Pointer {
     }
 
     private Node copyRandomList(Node head) {
-        return null;
+        Map<Node, Node> map = new HashMap<>();
+        Node curr = head;
+        while (curr != null) {
+            map.put(curr, new Node(curr.val));
+            curr = curr.next;
+        }
+
+        curr = head;
+        while (curr != null) {
+            Node copy = map.get(curr);
+            copy.next = curr.next == null ? null : map.get(curr.next);
+            copy.random = curr.random == null ? null : map.get(curr.random);
+            curr = curr.next;
+        }
+
+        return map.get(head);
     }
 
     private static class Node {
